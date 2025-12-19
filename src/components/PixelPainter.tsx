@@ -69,9 +69,9 @@ export default function PixelPainter() {
     }
   }
 
-  function indexFromEvent(e: MouseEvent | Touch, rect: DOMRect) {
-    const clientX = 'clientX' in e ? e.clientX : (e as Touch).clientX
-    const clientY = 'clientY' in e ? e.clientY : (e as Touch).clientY
+  function indexFromEvent(e: { clientX: number; clientY: number }, rect: DOMRect) {
+    const clientX = e.clientX
+    const clientY = e.clientY
     const x = Math.floor((clientX - rect.left) / pixelSize)
     const y = Math.floor((clientY - rect.top) / pixelSize)
     if (x < 0 || x >= size || y < 0 || y >= size) return -1
